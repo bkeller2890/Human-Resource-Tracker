@@ -1,0 +1,11 @@
+@{
+    // Expected ViewData keys:
+    // "CreateAction" (string) - action name (required)
+    // "CreateController" (string) - controller name (optional)
+    // "ButtonClass" (string) - css classes (optional, default "btn btn-success")
+    var action = ViewData["CreateAction"] as string ?? "Create";
+    var controller = ViewData["CreateController"] as string;
+    var buttonClass = ViewData["ButtonClass"] as string ?? "btn btn-success";
+}
+
+<a asp-action="@action" asp-controller="@controller" class="@buttonClass px-3 py-1 rounded">Create New</a>

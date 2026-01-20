@@ -1,0 +1,55 @@
+@* Partial: Dashboard charts (Leave status + Employees by Department) *@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="card mb-4" role="region" aria-labelledby="leaveChartHeading">
+                <div class="card-body">
+                    <h3 id="leaveChartHeading" class="card-title">LOA Request by status</h3>
+                    <div tabindex="0" class="chart-wrapper" aria-describedby="leaveChartDesc">
+                        <canvas id="leaveStatusChart" style="max-height:360px; width:100%;" role="img" aria-label="Chart showing LOA requests by status"></canvas>
+                    </div>
+                    <div id="leaveChartDesc" class="visually-hidden" aria-hidden="false"></div>
+
+                    <!-- Screen-reader table fallback -->
+                    <noscript>
+                        <div class="sr-only">
+                            <h6>LOA Request by status (table)</h6>
+                            <table>
+                                <thead><tr><th>Status</th><th>Count</th></tr></thead>
+                                <tbody id="leaveDataNoScript"></tbody>
+                            </table>
+                        </div>
+                    </noscript>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card mb-4" role="region" aria-labelledby="empChartHeading">
+                <div class="card-body">
+                    <h3 id="empChartHeading" class="card-title">Employees by Department</h3>
+                    <div tabindex="0" class="chart-wrapper" aria-describedby="empChartDesc">
+                        <canvas id="employeeDeptChart" style="max-height:360px; width:100%;" role="img" aria-label="Bar chart showing employee counts by department"></canvas>
+                    </div>
+                    <div id="empChartDesc" class="visually-hidden" aria-hidden="false"></div>
+
+                    <!-- Screen-reader table fallback -->
+                    <noscript>
+                        <div class="sr-only">
+                            <h6>Employees by Department (table)</h6>
+                            <table>
+                                <thead><tr><th>Department</th><th>Count</th></tr></thead>
+                                <tbody id="empDataNoScript"></tbody>
+                            </table>
+                        </div>
+                    </noscript>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+<!-- Dashboard behavior extracted to /wwwroot/js/dashboard.js -->
+<script src="/js/dashboard.js"></script>

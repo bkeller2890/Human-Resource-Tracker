@@ -1,0 +1,64 @@
+@model HRTracker.Models.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<h4>Employee</h4>
+<hr />
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+    <label asp-for="FirstName" class="control-label fw-semibold"></label>
+    <input asp-for="FirstName" class="form-control p-2" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="LastName" class="control-label fw-semibold"></label>
+    <input asp-for="LastName" class="form-control p-2" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Email" class="control-label fw-semibold"></label>
+    <input asp-for="Email" class="form-control p-2" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Position" class="control-label fw-semibold"></label>
+    <input asp-for="Position" class="form-control p-2" />
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="DepartmentId" class="control-label fw-semibold"></label>
+    <select asp-for="DepartmentId" class="form-control select2-department p-2" asp-items="@(ViewData["DepartmentId"] as IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>)">
+            <option value="">-- Select Department --</option>
+        </select>
+        <span asp-validation-for="DepartmentId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <strong>Selected Department:</strong> <span id="selected-department-create">None</span>
+    </div>
+    <script>
+        $(function(){
+            var sel = $('select[name="DepartmentId"]');
+            function update() { $('#selected-department-create').text(sel.find('option:selected').text() || 'None'); }
+            sel.on('change', update);
+            update();
+        });
+    </script>
+    <div class="form-group">
+    <button type="submit" class="btn btn-primary rounded shadow-sm">Save</button>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

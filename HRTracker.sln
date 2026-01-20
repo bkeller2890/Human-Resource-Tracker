@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRTracker", "HRTracker.csproj", "{CA88E007-1C8E-4E61-DC3D-5976956F4991}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA88E007-1C8E-4E61-DC3D-5976956F4991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA88E007-1C8E-4E61-DC3D-5976956F4991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA88E007-1C8E-4E61-DC3D-5976956F4991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA88E007-1C8E-4E61-DC3D-5976956F4991}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4A82776-C3F1-4D6A-BF01-7AFF0BB4C959}
+	EndGlobalSection
+EndGlobal

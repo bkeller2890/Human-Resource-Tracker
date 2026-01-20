@@ -1,0 +1,46 @@
+@model HRTracker.Models.LeaveRequest
+
+<h1>Create Leave Request</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="EmployeeId" class="control-label"></label>
+    <select asp-for="EmployeeId" class="form-control p-2" asp-items="ViewBag.Employees">
+            <option value="">-- Select Employee --</option>
+        </select>
+        <span asp-validation-for="EmployeeId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+    <input asp-for="StartDate" type="date" class="form-control p-2" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+    <input asp-for="EndDate" type="date" class="form-control p-2" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LeaveType" class="control-label"></label>
+    <input asp-for="LeaveType" class="form-control p-2" placeholder="e.g. Vacation" />
+        <span asp-validation-for="LeaveType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status" class="control-label"></label>
+    <select asp-for="Status" class="form-control p-2" asp-items="Html.GetEnumSelectList<HRTracker.Models.LeaveStatus>()"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary rounded shadow-sm">Save Request</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

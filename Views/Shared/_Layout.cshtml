@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HRTracker</title>
+    <script type="importmap"></script>
+    <!-- Bootstrap CDN (primary) and local fallback -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Tailwind removed: site uses Bootstrap and site-frameworks.css only -->
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HRTracker.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site-frameworks.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav role="navigation" aria-label="Main navigation" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HRTracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @{
+                            var current = (ViewContext.RouteData.Values["controller"] as string) ?? "Home";
+                            string LinkClass(string controller) => "nav-link" + (string.Equals(controller, current, System.StringComparison.OrdinalIgnoreCase) ? " active" : "");
+                            bool IsActive(string controller) => string.Equals(controller, current, System.StringComparison.OrdinalIgnoreCase);
+                        }
+                        <li class="nav-item">
+                            <a aria-current="@(IsActive("Home") ? "page" : null)" class="@(LinkClass("Home"))" asp-area="" asp-controller="Home" asp-action="Index">
+                                <svg class="me-2" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 3.293l6 6V15h-4v-4H6v4H2V9.293l6-6z"/></svg>
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a aria-current="@(IsActive("Employees") ? "page" : null)" class="@(LinkClass("Employees"))" asp-controller="Employees" asp-action="Index">
+                                <svg class="me-2" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 14s1-1 6-1 6 1 6 1v1H2v-1z"/></svg>
+                                Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a aria-current="@(IsActive("LeaveRequests") ? "page" : null)" class="@(LinkClass("LeaveRequests"))" asp-controller="LeaveRequests" asp-action="Index">
+                                <svg class="me-2" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5V4h1.5A1.5 1.5 0 0 1 16 5.5v8A1.5 1.5 0 0 1 14.5 15h-13A1.5 1.5 0 0 1 0 13.5v-8A1.5 1.5 0 0 1 1.5 4H3V2.5z"/></svg>
+                                Leave Requests
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a aria-current="@(IsActive("Departments") ? "page" : null)" class="@(LinkClass("Departments"))" asp-controller="Departments" asp-action="Index">
+                                <svg class="me-2" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M2 2h12v4H2V2zm0 6h5v6H2V8zm7 0h7v6H9V8z"/></svg>
+                                Departments
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - HRTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Bootstrap JS CDN and local fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2-department').select2({
+                width: 'resolve',
+                placeholder: '-- Select Department --',
+                allowClear: true
+            });
+        });
+    </script>
+    <script>
+        // unobtrusive adapter for date range: data-val-daterange="message" data-val-daterange-startselector="StartDate" data-val-daterange-endselector="EndDate"
+        (function ($) {
+            $.validator.addMethod('daterange', function (value, element, params) {
+                var startVal = $(params.start).val();
+                var endVal = $(params.end).val();
+                if (!startVal || !endVal) return true; // let required handle empties
+                var start = new Date(startVal);
+                var end = new Date(endVal);
+                return end >= start;
+            });
+
+            $.validator.unobtrusive.adapters.add('daterange', ['start', 'end'], function (options) {
+                var params = { start: options.params.start, end: options.params.end };
+                options.rules['daterange'] = params;
+                options.messages['daterange'] = options.message;
+            });
+        })(jQuery);
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

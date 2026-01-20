@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unobtrusive DateRange Adapter Test</title>
+  <script src="/lib/jquery/dist/jquery.min.js"></script>
+  <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+  <form id="testForm">
+    <label for="StartDate">Start date</label>
+    <input id="StartDate" name="StartDate" type="date" value="2025-12-10" />
+    <label for="EndDate">End date</label>
+    <input id="EndDate" name="EndDate" type="date" data-val-daterange="End date must be after start" data-val-daterange-start="#StartDate" data-val-daterange-end="#EndDate" value="2025-12-09" />
+    <button id="submit" type="button">Submit</button>
+  </form>
+  <div id="result"></div>
+  <script>
+    $(function(){
+      $('#submit').on('click', function(e){
+        e.preventDefault();
+        if ($('#testForm').valid()) {
+          $('#result').text('Form valid');
+        } else {
+          $('#result').text('Form invalid — errors: ' + $('span.field-validation-error').length);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

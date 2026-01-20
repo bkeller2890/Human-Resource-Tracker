@@ -1,0 +1,69 @@
+Using launch settings from /Users/benjaminkeller/Desktop/App Projects/HR-Tracker/HRTracker/Properties/launchSettings.json...
+Building...
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5044
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/benjaminkeller/Desktop/App Projects/HR-Tracker/HRTracker
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE "l"."Status"
+          WHEN 0 THEN 'Pending'
+          WHEN 1 THEN 'Approved'
+          WHEN 2 THEN 'Rejected'
+          ELSE CAST("l"."Status" AS TEXT)
+      END AS "Status", COUNT(*) AS "Count"
+      FROM "LeaveRequests" AS "l"
+      GROUP BY "l"."Status"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "d"."Name", "d"."DepartmentId", "e"."EmployeeId", "e"."DepartmentId", "e"."Email", "e"."FirstName", "e"."LastName", "e"."Position", (
+          SELECT COUNT(*)
+          FROM "Employees" AS "e0"
+          WHERE "d"."DepartmentId" = "e0"."DepartmentId")
+      FROM "Departments" AS "d"
+      LEFT JOIN "Employees" AS "e" ON "d"."DepartmentId" = "e"."DepartmentId"
+      ORDER BY "d"."DepartmentId"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE "l"."Status"
+          WHEN 0 THEN 'Pending'
+          WHEN 1 THEN 'Approved'
+          WHEN 2 THEN 'Rejected'
+          ELSE CAST("l"."Status" AS TEXT)
+      END AS "Status", COUNT(*) AS "Count"
+      FROM "LeaveRequests" AS "l"
+      GROUP BY "l"."Status"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "d"."Name", "d"."DepartmentId", "e"."EmployeeId", "e"."DepartmentId", "e"."Email", "e"."FirstName", "e"."LastName", "e"."Position", (
+          SELECT COUNT(*)
+          FROM "Employees" AS "e0"
+          WHERE "d"."DepartmentId" = "e0"."DepartmentId")
+      FROM "Departments" AS "d"
+      LEFT JOIN "Employees" AS "e" ON "d"."DepartmentId" = "e"."DepartmentId"
+      ORDER BY "d"."DepartmentId"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE "l"."Status"
+          WHEN 0 THEN 'Pending'
+          WHEN 1 THEN 'Approved'
+          WHEN 2 THEN 'Rejected'
+          ELSE CAST("l"."Status" AS TEXT)
+      END AS "Status", COUNT(*) AS "Count"
+      FROM "LeaveRequests" AS "l"
+      GROUP BY "l"."Status"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "d"."Name", "d"."DepartmentId", "e"."EmployeeId", "e"."DepartmentId", "e"."Email", "e"."FirstName", "e"."LastName", "e"."Position", (
+          SELECT COUNT(*)
+          FROM "Employees" AS "e0"
+          WHERE "d"."DepartmentId" = "e0"."DepartmentId")
+      FROM "Departments" AS "d"
+      LEFT JOIN "Employees" AS "e" ON "d"."DepartmentId" = "e"."DepartmentId"
+      ORDER BY "d"."DepartmentId"

@@ -1,0 +1,96 @@
+/* Minimal framework harmonization styles
+   - Use Bootstrap components primarily; Tailwind utilities can be applied selectively.
+   - Prevent Tailwind from overriding Bootstrap defaults globally by limiting base utilities.
+*/
+
+/* Ensure container spacing matches Bootstrap's container */
+.container {
+  max-width: 960px;
+}
+
+/* Make the primary Create button consistent */
+.btn-success {
+  background-color: #198754; /* Bootstrap default */
+  border-color: #198754;
+}
+
+/* Leave form element appearance to Bootstrap/browser defaults to preserve spacing */
+/* (removed forced appearance: none which shrank controls in some browsers) */
+
+/* Keep forms readable */
+.form-label {
+  font-weight: 600;
+}
+
+/* Reduce navbar spacing when Tailwind utilities are used */
+.navbar-brand {
+  font-weight: 700;
+}
+
+/* Navbar colors: switch to Bootstrap primary blue */
+:root {
+  --nav-primary: #0d6efd; /* bootstrap primary */
+  --nav-primary-hover: #0b5ed7;
+}
+.nav-link {
+  color: var(--nav-primary) !important;
+  opacity: 1 !important;
+}
+
+/* Roomier horizontal spacing for nav links (0.75rem per side) */
+.navbar-nav .nav-link {
+  padding-left: 0.75rem; /* increased from 0.5rem */
+  padding-right: 0.75rem; /* increased from 0.5rem */
+}
+
+/* Active link indicator: thicker bottom border for stronger visual cue */
+.nav-link.active {
+  font-weight: 700;
+  /* remove native border to avoid layout shift; use pseudo-element underline instead */
+  border-bottom: none;
+}
+
+/* Pseudo-element underline used for active state and animated via transform (no layout shift) */
+.nav-link::after {
+  content: '';
+  display: block;
+  height: 3px; /* maximum visual thickness */
+  background: var(--nav-primary);
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleY(0); /* collapsed by default */
+  transition: transform 260ms cubic-bezier(.2,.8,.2,1), opacity 200ms ease-in-out;
+  opacity: 0;
+}
+.nav-link.active::after {
+  transform: scaleY(1); /* expand to full thickness */
+  opacity: 1;
+}
+
+/* Hover and focus states for accessibility and discoverability */
+.nav-link:hover {
+  color: var(--nav-primary-hover);
+  text-decoration: none;
+  background-color: rgba(13,110,253,0.04); /* subtle blue-tinted hover background */
+}
+.nav-link:focus-visible {
+  outline: 3px solid rgba(13,110,253,0.18);
+  outline-offset: 2px;
+}
+
+/* Ensure icons in nav items keep spacing regardless of Tailwind utilities */
+.navbar-nav .nav-link svg { margin-right: 0.5rem; fill: currentColor; }
+
+/* Subtle transition for hover and active border changes */
+.nav-link {
+  transition: color 220ms cubic-bezier(.2,.8,.2,1), border-bottom-color 260ms cubic-bezier(.2,.8,.2,1), background-color 220ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* Compact navbar for small screens */
+@media (max-width: 576px) {
+  /* Use Bootstrap-like stacked nav spacing on small screens */
+  .navbar-nav { display: flex; flex-direction: column; gap: .5rem; }
+  .navbar-brand { font-size: 1.05rem; }
+  /* approximate Bootstrap .nav-link padding for better tap targets */
+  .nav-link { padding: 0.5rem 1rem; }
+}
